@@ -1,0 +1,20 @@
+name: eventorix
+base: core24
+version: '0.1.1'
+license: MIT-0
+summary: Persistent local event management and task scheduling
+description: |
+  Local-first event and task middleware with a JSON command-line interface.
+  No network access is required. This beta supports manual history exchange.
+grade: devel
+confinement: strict
+apps:
+  eventorix:
+    command: bin/eventorix
+parts:
+  cli:
+    plugin: nil
+    source: .
+    stage-packages: [python3]
+    override-build: |
+      install -Dm755 eventorix.py "$CRAFT_PART_INSTALL/bin/eventorix"

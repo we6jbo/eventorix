@@ -1,24 +1,10 @@
 cmake_minimum_required(VERSION 3.21)
-
-project(eventorix VERSION 0.1 LANGUAGES CXX)
-
+project(eventorix VERSION 0.1.1 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTORCC ON)
-
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
-
-qt_add_executable(eventorix
-    main.cpp
-    mainwindow.cpp
-    mainwindow.h
-    mainwindow.ui
-)
-
-target_link_libraries(eventorix PRIVATE Qt6::Widgets)
-
-install(TARGETS eventorix
-    RUNTIME DESTINATION bin
-)
+qt_add_executable(eventorix-monitor main.cpp mainwindow.cpp mainwindow.h mainwindow.ui)
+target_link_libraries(eventorix-monitor PRIVATE Qt6::Widgets)
+install(TARGETS eventorix-monitor RUNTIME DESTINATION bin)
+install(PROGRAMS eventorix.py DESTINATION bin RENAME eventorix)
